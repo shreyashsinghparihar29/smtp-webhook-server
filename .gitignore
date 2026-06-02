@@ -1,0 +1,14 @@
+# Build artifacts
+
+bin/
+smtp-webhook-server
+smtp-webhook-server.exe
+
+# Dependency directory
+
+vendor/
+
+# OS files
+
+.DS_Store
+Thumbs.db
