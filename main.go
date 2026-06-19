@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 
+	//this package helps to implement the SMTP protocol
 	"github.com/alash3al/go-smtpsrv"
 )
 
@@ -105,7 +106,7 @@ func main() {
 			}
 
 			// =========================
-			// After the basic structuring of project I have added features to it==>>database storage of emails, worker as goroutines, pushing jobs into queue and retry mechanism with exponential backoff
+			// After I completed the basic structuring of project I have added features to it==>>database storage of emails, worker as goroutines, pushing jobs into queue and retry mechanism with exponential backoff
 			// =========================
 
 			// SAVE TO DB
