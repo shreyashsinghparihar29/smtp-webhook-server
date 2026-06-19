@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	// INIT SYSTEMS
+	// INIT SYSTEMS-->we have initialised the database and the worker(go routines)
 	initDB()
 	startWorker()
 
@@ -42,7 +42,7 @@ func main() {
 
 			spfResult, _, _ := c.SPF()
 
-			// CREATE EMAIL MESSAGE (SAFE INIT)
+			// CREATE EMAIL MESSAGE 
 			jsonData := EmailMessage{
 				ID:            msg.MessageID,
 				Date:          msg.Date.String(),
@@ -55,7 +55,7 @@ func main() {
 				EmbeddedFiles: []*EmailEmbeddedFile{},
 			}
 
-			// SAFE INITIALIZATION (IMPORTANT FIX)
+			// now we are converting go's default to our own struct
 			jsonData.Body.Text = string(msg.TextBody)
 			jsonData.Body.HTML = string(msg.HTMLBody)
 
@@ -105,7 +105,7 @@ func main() {
 			}
 
 			// =========================
-			// NEW ARCHITECTURE STARTS
+			// After the basic structuring of project I have added features to it==>>database storage of emails, worker as goroutines, pushing jobs into queue and retry mechanism with exponential backoff
 			// =========================
 
 			// SAVE TO DB
@@ -121,7 +121,7 @@ func main() {
 				return errors.New("db error")
 			}
 
-			// PUSH TO WORKER QUEUE (ASYNC)
+			// PUSH TO WORKER QUEUE
 			jobQueue <- Job{
 				ID:      id,
 				Payload: jsonData,
